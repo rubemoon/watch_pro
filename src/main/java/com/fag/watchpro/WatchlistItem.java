@@ -1,13 +1,23 @@
 package com.fag.watchpro;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+
+@GoodContent
 public class WatchlistItem {
-	private Integer id;
+	
+private Integer id;
+	
+	@NotBlank( message="Please enter the title")
 	private String title;
-	private String rating;
+	
+	private String rating; 
+	
+	@Priority
 	private String priority;
+	
+	@Size(max=50,  message="Comment should be maximum 50 characters")
 	private String comment;
-	
-	
 	
 	public WatchlistItem(String title, String rating, String priority, String comment, Integer id) {
 		super();
@@ -16,6 +26,8 @@ public class WatchlistItem {
 		this.priority = priority;
 		this.comment = comment;
 		this.id = id;
+	}
+	public WatchlistItem() {
 	}
 	public String getTitle() {
 		return title;

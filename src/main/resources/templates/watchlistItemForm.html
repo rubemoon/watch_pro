@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.15/dist/tailwind.min.css">
-    <title>WatchPro</title>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <title>Watchlist App</title>
+   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
 <body>
- <nav class="bg-gray-800">
+     <nav class="bg-gray-800">
   <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
     <div class="relative flex h-16 items-center justify-between">
       <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
@@ -99,40 +99,61 @@
     </div>
   </div>
 </nav>
+<div class="container mx-auto">
+      
+		    <form action="#" method="post" class="mt-4" th:action="@{/watchlistItemForm}" th:object="${watchlistItem}">
+		    <h2 class="text-2xl font-bold">Submit an item</h2>
+		    <hr class="my-4">
+		    <!-- Form levels error messages here -->
+		    <div class="form-group row mb-4">
+		        <div class="col-sm-8">
+		            <span class="text-danger" th:errors="*{global}"></span>
+		        </div>
+		    </div>
+		    <div class="form-group row mb-4">
+		        <label for="title" class="col-sm-2 col-form-label">Title</label>
+		        <div class="col-sm-4">
+		            <input type="text" class="form-input w-full p-2 border rounded focus:outline-none focus:ring focus:border-blue-300" th:field="*{title}" placeholder="Mandatory">
+		        </div>
+		        <div class="col-sm-4">
+		            <span class="text-danger"  th:errors="*{title}"></span>
+		        </div>
+		    </div>
+		    <div class="form-group row mb-4">
+		        <label for="rating" class="col-sm-2 col-form-label mr-0">Rating</label>
+		        <div class="col-sm-4">
+		            <input type="text" class="form-input w-full p-2 border rounded focus:outline-none focus:ring focus:border-blue-300" th:field="*{rating}" placeholder="5.0 < Number < 10.0">
+		        </div>
+		        <div class="col-sm-4">
+		            <span class="text-danger"  th:errors="*{rating}"></span>
+		        </div>
+		    </div>
+		    <div class="form-group row mb-4">
+		        <label for="priority" class="col-sm-2 col-form-label mr-0">Priority</label>
+		        <div class="col-sm-4">
+		            <input type="text" class="form-input w-full p-2 border rounded focus:outline-none focus:ring focus:border-blue-300" th:field="*{priority}" placeholder="Low|Medium|High">
+		        </div>
+		        <div class="col-sm-4">
+		            <span class="text-danger"  ></span>
+		        </div>
+		    </div>
+		    <div class="form-group row mb-4">
+		        <label for="comments" class="col-sm-2 col-form-label">Comments</label>
+		        <div class="col-sm-4">
+		            <textarea class="form-input w-full p-2 border rounded focus:outline-none focus:ring focus:border-blue-300" rows="3" th:field="*{comment}" placeholder="Max. 50 chars"></textarea>
+		        </div>
+		        <div class="col-sm-4">
+		            <span class="text-danger" th:errors="*{comment}"></span>
+		        </div>	
+		    </div>
+		    <div class="form-group row">
+		        <div class="col-sm-10">
+					<input type="hidden" th:field="*{id}" />
+		            <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Submit</button>
+		        </div>
+		    </div>
+		</form>
 
-    <div class="container mx-auto mt-8">
-    <h2 class="text-2xl font-semibold mb-4">Watchlist</h2>
-
-    <table class="table-auto w-full mb-4">
-        <thead class="bg-gray-200">
-            <tr>
-                <th class="text-left px-2 py-2">Title</th>
-                <th class="text-left px-2 py-2">Rating</th>
-                <th class="text-left px-2 py-2">Priority</th>
-                <th class="text-left px-2 py-2">Comment</th>
-                <th class="text-left px-2 py-2"></th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr th:each="watchlistItem: ${watchlistItems}">
-                <td class="px-2 py-2" th:text="${watchlistItem.title}">Avatar</td>
-                <td class="px-2 py-2" th:text="${watchlistItem.rating}">7.8</td>
-                <td class="px-2 py-2" th:text="${watchlistItem.priority}">LOW</td>
-                <td class="px-2 py-2" th:text="${watchlistItem.comment}">Peter recommended</td>
-                <td class="px-2 py-2">
-                    <a th:href="@{/watchlistItemForm(id=${watchlistItem.id})}" href="#" class="bg-blue-500 hover-bg-blue-700 text-white font-bold py-2 px-4 rounded">Update</a>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-
-    <hr class="my-4">
-
-    <div class="mb-4">
-        Number of movies to watch: <span th:text="${numberOfMovies}"></span>
-    </div>
-</div>
-
-
+   </div>
 </body>
 </html>
