@@ -44,7 +44,7 @@
             <a href="/" class="bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium" >Watchpro</a>
             <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Contacts</a>
              <a href="/watchlist" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Watchlist</a>
-            <a href="/watchlistItemForm" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Add List</a>
+            <a href="watchlistItemForm" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Add List</a>
           </div>
         </div>
       </div>
@@ -99,61 +99,26 @@
     </div>
   </div>
 </nav>
-<div class="container mx-auto">
-      
-		    <form action="#" method="post" class="mt-4" th:action="@{/watchlistItemForm}" th:object="${watchlistItem}">
-		    <h2 class="text-2xl font-bold">Submit an item</h2>
-		    <hr class="my-4">
-		    <!-- Form levels error messages here -->
-		    <div class="form-group row mb-4">
-		        <div class="col-sm-8">
-		            <span class="text-danger" th:errors="*{global}"></span>
-		        </div>
-		    </div>
-		    <div class="form-group row mb-4">
-		        <label for="title" class="col-sm-2 col-form-label">Title</label>
-		        <div class="col-sm-4">
-		            <input type="text" class="form-input w-full p-2 border rounded focus:outline-none focus:ring focus:border-blue-300" th:field="*{title}" placeholder="Mandatory">
-		        </div>
-		        <div class="col-sm-4">
-		            <span class="text-danger"  th:errors="*{title}"></span>
-		        </div>
-		    </div>
-		    <div class="form-group row mb-4">
-		        <label for="rating" class="col-sm-2 col-form-label mr-0">Rating</label>
-		        <div class="col-sm-4">
-		            <input type="text" class="form-input w-full p-2 border rounded focus:outline-none focus:ring focus:border-blue-300" th:field="*{rating}" placeholder="5.0 < Number < 10.0">
-		        </div>
-		        <div class="col-sm-4">
-		            <span class="text-danger"  th:errors="*{rating}"></span>
-		        </div>
-		    </div>
-		    <div class="form-group row mb-4">
-		        <label for="priority" class="col-sm-2 col-form-label mr-0">Priority</label>
-		        <div class="col-sm-4">
-		            <input type="text" class="form-input w-full p-2 border rounded focus:outline-none focus:ring focus:border-blue-300" th:field="*{priority}" placeholder="Low|Medium|High">
-		        </div>
-		        <div class="col-sm-4">
-		            <span class="text-danger"  ></span>
-		        </div>
-		    </div>
-		    <div class="form-group row mb-4">
-		        <label for="comments" class="col-sm-2 col-form-label">Comments</label>
-		        <div class="col-sm-4">
-		            <textarea class="form-input w-full p-2 border rounded focus:outline-none focus:ring focus:border-blue-300" rows="3" th:field="*{comment}" placeholder="Max. 50 chars"></textarea>
-		        </div>
-		        <div class="col-sm-4">
-		            <span class="text-danger" th:errors="*{comment}"></span>
-		        </div>	
-		    </div>
-		    <div class="form-group row">
-		        <div class="col-sm-10">
-					<input type="hidden" th:field="*{id}" />
-		            <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Submit</button>
-		        </div>
-		    </div>
-		</form>
-
-   </div>
+	<div class="container mx-auto mt-8">
+		<h2  class = "mt-4">Welcome to the Watchlist application!</h2> <br>		
+		
+		<div class="max-w-sm rounded overflow-hidden shadow-lg">
+  <img class="w-full" src="https://images.unsplash.com/photo-1699727152382-8ce951c1caa4?q=80&w=1989&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Sunset in the mountains">
+  <div class="px-6 py-4">
+    <div class="font-bold text-xl mb-2">The Coldest Sunset</div>
+    <p class="text-gray-700 text-base">
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.
+    </p>
+  </div>
+  <div class="px-6 pt-4 pb-2">
+    <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#photography</span>
+    <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#travel</span>
+    <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#winter</span>
+  </div>
+</div>
+		</div>
+		
+		
+		
 </body>
 </html>

@@ -42,6 +42,30 @@ public class WatchlistController {
 		}
 		return null;
 	}
+	
+	@PostMapping("/watchlistItem")
+	public ModelAndView watchlistItemSubmit(@Valid WatchlistItem watchlistItem, BindingResult bindingResult) {
+	    if (bindingResult.hasErrors()) {
+	        return new ModelAndView("watchlistItem");
+	    }
+
+	    if (itemAlreadyExists(watchlistItem.getTitle())) {
+	        bindingResult.rejectValue("title", "", "This movie is already on your watchlist");
+	        Map<String, Object> model = new HashMap<>();
+	        model.put("watchlistItem", watchlistItem);
+	        return new ModelAndView("watchlistItem", model);
+	    }
+
+	    watchlistItems.add(watchlistItem);
+
+	    RedirectView redirectView = new RedirectView();
+	    redirectView.setUrl("/watchlist");
+
+	    return new ModelAndView(redirectView);
+	}
+
+	
+	
 
 	@PostMapping("/watchlistItemForm")
 	public ModelAndView submitWatchlistItemForm(@Valid WatchlistItem watchlistItem, BindingResult bindingResult) {
@@ -85,4 +109,15 @@ public class WatchlistController {
         
         return new ModelAndView(viewName, model);
     }
+    
+    
+    private boolean itemAlreadyExists(String title) {
+        for (WatchlistItem watchlistItem : watchlistItems) {
+            if (watchlistItem.getTitle().equalsIgnoreCase(title)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 }

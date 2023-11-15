@@ -14,7 +14,7 @@ import javax.validation.Payload;
 @Constraint(validatedBy = GoodContentValidator.class)
 public @interface GoodContent {
 	
-	String message() default "If a movie is as good as 8 then priority should be at least M";
+	String message() default "If a content is as good as 8 then priority should be at least M";
 	
 	Class<?>[] groups() default {};
     Class<? extends Payload>[] payload() default {};
