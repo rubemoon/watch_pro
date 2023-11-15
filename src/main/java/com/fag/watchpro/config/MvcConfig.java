@@ -1,4 +1,4 @@
-package com.fag.watchpro;
+package com.fag.watchpro.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;

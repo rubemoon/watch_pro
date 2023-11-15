@@ -1,19 +1,21 @@
-package com.fag.watchpro;
+package com.fag.watchpro.validation;
+
+
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
-
 import javax.validation.Constraint;
 import javax.validation.Payload;
 
-@Target(ElementType.FIELD)
+@Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
-@Constraint(validatedBy = PriorityValidator.class)
-public @interface Priority {
+@Constraint(validatedBy = GoodContentValidator.class)
+public @interface GoodContent {
 	
-	String message() default "please enter L,M or H for priority";
+	String message() default "If a content is as good as 8 then priority should be at least M";
+	
 	Class<?>[] groups() default {};
-	Class<? extends Payload>[] payload() default {};
+    Class<? extends Payload>[] payload() default {};
 }

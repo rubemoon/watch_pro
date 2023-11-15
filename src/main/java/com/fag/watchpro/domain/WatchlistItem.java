@@ -1,7 +1,10 @@
-package com.fag.watchpro;
+package com.fag.watchpro.domain;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+
+import com.fag.watchpro.validation.GoodContent;
+import com.fag.watchpro.validation.Priority;
 
 @GoodContent
 public class WatchlistItem {

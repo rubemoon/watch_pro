@@ -1,4 +1,4 @@
-package com.fag.watchpro;
+package com.fag.watchpro.validation;
 
 
 import javax.validation.ConstraintValidator;

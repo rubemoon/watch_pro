@@ -1,7 +1,9 @@
-package com.fag.watchpro;
+package com.fag.watchpro.validation;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
+
+import com.fag.watchpro.domain.WatchlistItem;
 
 public class GoodContentValidator implements ConstraintValidator<GoodContent, WatchlistItem>{
 

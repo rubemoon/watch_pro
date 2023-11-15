@@ -1,4 +1,4 @@
-package com.fag.watchpro;
+package com.fag.watchpro.controller;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
