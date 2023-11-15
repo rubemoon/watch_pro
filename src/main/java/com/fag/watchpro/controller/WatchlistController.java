@@ -79,6 +79,10 @@ public class WatchlistController {
 		WatchlistItem existingItem = findWatchlistItemById(watchlistItem.getId());
 		
 		if (existingItem == null) {
+			if (itemAlreadyExists(watchlistItem.getTitle())) {
+				bindingResult.rejectValue("title", "", "This title already exists on your watchlist");
+				return new ModelAndView("watchlistItemForm");
+			}
 			watchlistItem.setId(index++);
 			watchlistItems.add(watchlistItem);
 		} else {
