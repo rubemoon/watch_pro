@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.fag.watchpro.domain.WatchlistItem;
 
-@Service
+
 public class WatchlistRepository {
 	private List<WatchlistItem> watchlistItems = new ArrayList<WatchlistItem>();
 	private static int index = 1;

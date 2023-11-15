@@ -10,13 +10,13 @@ import com.fag.watchpro.domain.WatchlistItem;
 import com.fag.watchpro.exception.DuplicateTitleException;
 import com.fag.watchpro.repository.WatchlistRepository;
 
-@Service
+
 public class WatchlistService {
 	
 	WatchlistRepository watchlistRepository ;
 	MovieRatingService movieRatingService ;
 	
-	@Autowired	
+	
 	public WatchlistService(WatchlistRepository watchlistRepository, MovieRatingService movieRatingService) {
 		super();
 		this.watchlistRepository = watchlistRepository;

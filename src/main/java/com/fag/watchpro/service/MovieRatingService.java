@@ -7,7 +7,6 @@ import org.springframework.web.client.RestTemplate;
 
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
-@Service
 public class MovieRatingService {
 	
 	String apiUrl = "http://www.omdbapi.com/?apikey=26e3a6ca&t=";
