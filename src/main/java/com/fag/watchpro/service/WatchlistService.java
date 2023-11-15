@@ -2,17 +2,30 @@ package com.fag.watchpro.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.fag.watchpro.domain.WatchlistItem;
 import com.fag.watchpro.exception.DuplicateTitleException;
 import com.fag.watchpro.repository.WatchlistRepository;
 
+@Service
 public class WatchlistService {
 	
-	WatchlistRepository watchlistRepository = new WatchlistRepository();
-	MovieRatingService movieRatingService = new MovieRatingService();
+	WatchlistRepository watchlistRepository ;
+	MovieRatingService movieRatingService ;
 	
+	@Autowired	
+	public WatchlistService(WatchlistRepository watchlistRepository, MovieRatingService movieRatingService) {
+		super();
+		this.watchlistRepository = watchlistRepository;
+		this.movieRatingService = movieRatingService;
+	}
+
+
+
+
 	public List<WatchlistItem> getWatchlistItems() {
 		List<WatchlistItem> watchlistItems = watchlistRepository.getList();
 		

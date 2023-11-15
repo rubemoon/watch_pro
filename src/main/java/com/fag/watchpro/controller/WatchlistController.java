@@ -7,6 +7,7 @@ import java.util.Map;
 
 import javax.validation.Valid;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,8 +23,19 @@ import com.fag.watchpro.service.WatchlistService;
 @Controller
 public class WatchlistController {
 	
-	private WatchlistService watchlistService = new WatchlistService();
+	private WatchlistService watchlistService;
+	
+	
     
+	@Autowired
+	public WatchlistController(WatchlistService watchlistService) {
+		super();
+		this.watchlistService = watchlistService;
+	}
+
+
+
+
 
 	@GetMapping("/watchlistItemForm")
 	public ModelAndView showWatchlistItemForm(@RequestParam(required=false) Integer id) {
