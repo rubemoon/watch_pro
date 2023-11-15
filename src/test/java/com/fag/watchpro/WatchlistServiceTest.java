@@ -1,5 +1,11 @@
 package com.fag.watchpro;
 
+
+
+import static org.junit.Assert.assertTrue;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.when;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -48,6 +54,21 @@ public class WatchlistServiceTest {
 	}
 	
 	
+	@Test
+	public void testGetwatchlistItemsRatingFormOmdbServiceOverrideTheValueInItems() {
+		
+		//Arrange
+		WatchlistItem item1 = new WatchlistItem("Star Wars", "7.7", "M" , "" , 1);
+		List<WatchlistItem> mockItems = Arrays.asList(item1);
+		
+		when(watchlistRepositoryMock.getList()).thenReturn(mockItems);	
+		when(movieRatingServiceMock.getMovieRating(any(String.class))).thenReturn("10");
+		
+		//Act
+		List<WatchlistItem> result = watchlistService.getWatchlistItems();
+		
+		//Assert
+		assertTrue(result.get(0).getRating().equals("10"));
+	}
 	
-
 }
