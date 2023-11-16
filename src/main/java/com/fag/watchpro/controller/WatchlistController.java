@@ -1,13 +1,12 @@
 package com.fag.watchpro.controller;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,28 +20,22 @@ import com.fag.watchpro.exception.DuplicateTitleException;
 import com.fag.watchpro.service.WatchlistService;
 
 @Controller
+@ConditionalOnProperty(name="app.environment", havingValue="dev")
 public class WatchlistController {
 	
-	private WatchlistService watchlistService;
-	
-	
-    
+	private final WatchlistService watchlistService;
+
 	@Autowired
 	public WatchlistController(WatchlistService watchlistService) {
-		super();
 		this.watchlistService = watchlistService;
 	}
-
-
-
-
 
 	@GetMapping("/watchlistItemForm")
 	public ModelAndView showWatchlistItemForm(@RequestParam(required=false) Integer id) {
 		
 		String viewName = "watchlistItemForm";
 		
-		Map<String, Object> model = new HashMap<String, Object>();
+		Map<String, Object> model = new HashMap<>();
 		
 		WatchlistItem watchlistItem = watchlistService.findWatchlistItemById(id);
 		if (watchlistItem == null) {
@@ -50,12 +43,8 @@ public class WatchlistController {
 		} else {
 			model.put("watchlistItem", watchlistItem);
 		}
-		return new ModelAndView(viewName , model);
+		return new ModelAndView(viewName, model);
 	}
-	
-
-
-	
 
 	@PostMapping("/watchlistItemForm")
 	public ModelAndView submitWatchlistItemForm(@Valid WatchlistItem watchlistItem, BindingResult bindingResult) {
@@ -77,23 +66,14 @@ public class WatchlistController {
 		return new ModelAndView(redirect);
 	}
 	
-	
-	
-	
-    @GetMapping("/watchlist")
+	@GetMapping("/watchlist")
     public ModelAndView getWatchlist() {
-    	
-    	
-
         String viewName = "watchlist";
-        Map<String, Object> model = new HashMap<String, Object>();
-        
+        Map<String, Object> model = new HashMap<>();
        
         model.put("watchlistItems", watchlistService.getWatchlistItems());
         model.put("numberOfMovies", watchlistService.getWatchlistItemsSize());
         
         return new ModelAndView(viewName, model);
     }
-    
-
 }

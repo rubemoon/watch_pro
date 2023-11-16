@@ -3,11 +3,12 @@ package com.fag.watchpro.repository;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import com.fag.watchpro.domain.WatchlistItem;
 
-
+@Repository
 public class WatchlistRepository {
 	private List<WatchlistItem> watchlistItems = new ArrayList<WatchlistItem>();
 	private static int index = 1;
