@@ -1,6 +1,7 @@
 package com.fag.watchpro.controller;
 
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
@@ -20,12 +21,10 @@ public class CustomErrorController implements ErrorController {
 	}
 	
 	@GetMapping("/error")
-	public ModelAndView handleError(HttpServletRequest response) {
+	public ModelAndView handleError(HttpServletRequest request) {
 		
-		HttpStatus code = ((ModelAndView) response).getStatus();
-    	System.out.println("Error with status code " + code + " happened !");
-    	
-    	logger.error("Error with status code {}  happened. Support! Do something !", code);
+		Object status = request.getAttribute(RequestDispatcher.ERROR_STATUS_CODE);
+    	logger.error("Error with status code " + status + " happened. Support! Do something about it!");
 	    return new ModelAndView("error");
 	}
 }
