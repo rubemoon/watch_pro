@@ -4,8 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Repository;
+<<<<<<< HEAD
 
 import com.fag.watchpro.domain.WatchlistItem;
+=======
+import org.springframework.stereotype.Service;
+
+import com.fag.watchpro.domain.WatchlistItem;
+
+>>>>>>> feature/omdb-api
 @Repository
 public class WatchlistRepository {
 	private List<WatchlistItem> watchlistItems = new ArrayList<WatchlistItem>();
