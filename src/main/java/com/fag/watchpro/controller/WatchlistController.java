@@ -7,6 +7,9 @@ import java.util.Map;
 
 import javax.validation.Valid;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,38 +22,42 @@ import com.fag.watchpro.domain.WatchlistItem;
 import com.fag.watchpro.exception.DuplicateTitleException;
 import com.fag.watchpro.service.WatchlistService;
 
+
 @Controller
 public class WatchlistController {
 	
-	private WatchlistService watchlistService = new WatchlistService();
-    
-
+	Logger logger = LoggerFactory.getLogger(WatchlistController.class);
+	
+	@Autowired
+	private WatchlistService watchlistService;
+	
 	@GetMapping("/watchlistItemForm")
-	public ModelAndView showWatchlistItemForm(@RequestParam(required=false) Integer id) {
+	public ModelAndView showWatchlistItemForm(@RequestParam(required = false) Integer id) {
+		
+		logger.info("GET /watchlistItem called");
 		
 		String viewName = "watchlistItemForm";
 		
-		Map<String, Object> model = new HashMap<String, Object>();
+		Map<String,Object> model = new HashMap<String,Object>();
 		
 		WatchlistItem watchlistItem = watchlistService.findWatchlistItemById(id);
+		
 		if (watchlistItem == null) {
-			model.put("watchlistItem", new WatchlistItem());
+			model.put("watchlistItem", new WatchlistItem());	
 		} else {
 			model.put("watchlistItem", watchlistItem);
 		}
-		return new ModelAndView(viewName , model);
+		return new ModelAndView(viewName,model); 
 	}
-	
-
-
-	
 
 	@PostMapping("/watchlistItemForm")
 	public ModelAndView submitWatchlistItemForm(@Valid WatchlistItem watchlistItem, BindingResult bindingResult) {
-	
+		
+		logger.info("GET /watchlistItem called");
+		
 		if (bindingResult.hasErrors()) {
-            return new ModelAndView("watchlistItemForm");
-        }
+			return new ModelAndView("watchlistItemForm");
+		}
 		
 		try {
 			watchlistService.addOrUpdateWatchlistItem(watchlistItem);
@@ -64,24 +71,19 @@ public class WatchlistController {
 		
 		return new ModelAndView(redirect);
 	}
-	
-	
-	
-	
-    @GetMapping("/watchlist")
-    public ModelAndView getWatchlist() {
-    	
-    	
-
-        String viewName = "watchlist";
-        Map<String, Object> model = new HashMap<String, Object>();
-        
-       
-        model.put("watchlistItems", watchlistService.getWatchlistItems());
-        model.put("numberOfMovies", watchlistService.getWatchlistItemsSize());
-        
-        return new ModelAndView(viewName, model);
-    }
-    
-
+		
+	@GetMapping("/watchlist")
+	public ModelAndView getMovieList() {
+		
+		logger.info("GET /watchlist called");
+		
+		String viewName= "watchlist";
+		
+		Map<String,Object> model = new HashMap<String,Object>();
+				
+		model.put("watchlistItems", watchlistService.getWatchlistItems());
+		model.put("numberOfMovies", watchlistService.getWatchlistItemsSize());
+		
+		return new ModelAndView(viewName,model);		
+	}
 }

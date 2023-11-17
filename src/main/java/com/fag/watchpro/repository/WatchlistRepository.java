@@ -3,8 +3,10 @@ package com.fag.watchpro.repository;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.fag.watchpro.domain.WatchlistItem;
+import org.springframework.stereotype.Repository;
 
+import com.fag.watchpro.domain.WatchlistItem;
+@Repository
 public class WatchlistRepository {
 	private List<WatchlistItem> watchlistItems = new ArrayList<WatchlistItem>();
 	private static int index = 1;
